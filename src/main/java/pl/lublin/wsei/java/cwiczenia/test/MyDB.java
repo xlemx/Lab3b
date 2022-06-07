@@ -7,13 +7,16 @@ import java.util.Properties;
 
 public class MyDB {
     private Connection conn = null;
-
+    private String User;
+    private String Password;
+    public void setUser(String user){User=user;}
+    public void setPassword(String password){Password=password;}
     private void connect() {
-        Object user= "root";
-        Object password="425425";
+        String user= "root";
+        String password="425425";
         String dbName="mydb";
         String port="3306";
-        String host="Localhost";
+        String host="localhost";
 
         Properties connectionProps = new Properties();
         connectionProps.put("user", user);
@@ -32,6 +35,7 @@ public class MyDB {
         }
         System.out.println("Connected to database" + dbName);
     }
+
 
     public Connection getConnection() {
         if (conn == null)

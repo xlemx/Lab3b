@@ -8,23 +8,25 @@ import java.util.Properties;
 
 public class MyDB {
     private Connection conn = null;
-    private String User;
-    private String Password;
-    String user = "";
-    String password = "";
-    String dbName = "";
-    Integer port = 0;
-    String host = "";
+    private String user = "";
+    private String password = "";
+    private String dbName = "";
+    private Integer port = 0;
+    private String host = "";
 
-    public MyDB(String localhost, int port, String mydb) {
+    public MyDB(String HOST, int PORT, String MYdb) {
+        host= HOST;
+        port=PORT;
+        dbName=MYdb;
+
     }
 
-    public void setUser(String user) {
-        User = user;
+    public void setUser(String User) {
+        user = User;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setPassword(String Password) {
+        password = Password;
     }
 
     private void connect() {

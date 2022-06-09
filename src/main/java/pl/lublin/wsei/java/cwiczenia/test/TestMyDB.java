@@ -1,9 +1,10 @@
 package pl.lublin.wsei.java.cwiczenia.test;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class TestMyDB {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
 
         MyDB db = new MyDB("localhost", 3306, "mydb");

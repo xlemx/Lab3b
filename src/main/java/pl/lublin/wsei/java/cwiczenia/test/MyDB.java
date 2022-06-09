@@ -13,6 +13,7 @@ public class MyDB {
     private String dbName = "";
     private Integer port = 0;
     private String host = "";
+    private Statement statement = null;
 
     public MyDB(String HOST, int PORT, String MYdb) {
         host= HOST;
@@ -37,9 +38,11 @@ public class MyDB {
         connectionProps.put("serverTimezone", "Europe/Warsaw");
 
         String jdbcString = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
+
+
         try {
-            conn = DriverManager.getConnection(
-                    jdbcString, connectionProps);
+            conn = DriverManager.getConnection(jdbcString, connectionProps);
+            statement = conn.createStatement();
         } catch (SQLException e) {
             System.out.println("Błąd podłączenia do bazy:" + jdbcString);
             System.out.println("Komunikat błędu:" + e.getMessage());
@@ -62,6 +65,16 @@ public class MyDB {
                 System.out.println("Błąd przy zamykaniu połączenia bazodanowego:" + e.getMessage());
             }
         conn = null;
+    }
+    public ResultSet selectData(String selectStatement){
 
+
+        if((conn!=null)&&(statement!=null))
+            try{
+                return statement.executeQuery(selectStatement);
+            }catch(SQLException e){
+                System.out.println("Błąd realizacji zapytania:"+selectStatement+","+e.getMessage());
+            }
+        return null;
     }
 }
